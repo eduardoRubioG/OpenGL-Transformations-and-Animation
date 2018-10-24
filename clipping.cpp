@@ -12,7 +12,6 @@ Point cwBL = {VIEWPORT_MIN, VIEWPORT_MIN}; //Clip window bottom left (100,100)
 Point cwBR = {VIEWPORT_MAX, VIEWPORT_MIN};//Clip window bottom right (700,100)
 Point cwTL = {VIEWPORT_MIN, VIEWPORT_MAX};//Clip window top left     (100,700)
 Point cwTR = {VIEWPORT_MAX, VIEWPORT_MAX};//Clip window top right    (700,700)
-//std::vector<Point> clippers = {cwBL, cwBR, cwTR, cwTL}; //Viewport is the clipping point
 std::vector<Point> clippers = {cwTL, cwTR, cwBR, cwBL};
 
 /**

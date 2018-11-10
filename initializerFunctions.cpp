@@ -1,14 +1,14 @@
 //Linux Headers
-/*#ifdef LINUX
+#ifdef LINUX
 #include <GL/glut.h>
-#endif*/
+#endif
 
 //Mac headers
-//#ifdef OSX
+#ifdef OSX
 #include <OpenGL/gl.h>
 #include <OpenGl/glu.h>
 #include <GLUT/glut.h>
-//#endif 
+#endif 
 
 #include <stdio.h>
 #include "globals.h"

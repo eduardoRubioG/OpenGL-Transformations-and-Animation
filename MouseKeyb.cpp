@@ -24,7 +24,7 @@ bool inViewport( int x, int y ) {
  */
 void mouse( int button, int state, int x, int y ){
     if( button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN ){
-        if( inViewport(x, y) )
+        if( !inViewport(x, y) )
             scaleTree(-1);
         else{
             SPIN--;
@@ -33,7 +33,7 @@ void mouse( int button, int state, int x, int y ){
     }
     if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN ){
         
-        if( inViewport(x, y) )
+        if( !inViewport(x, y) )
             scaleTree( 1 );
         else{
             SPIN++;
@@ -60,9 +60,10 @@ void specialKeyb( int key, int x, int y ){
 void keyboard( unsigned char key, int x, int y ){
     
     if( key == 'q' || key == 'Q' ) exit(0); // Quit
-    if( key == 't' || key == 'T' ) { IS_TESSELATED = true; IS_WIREFRAME = false; } // Show triangles
-    if( key == 'l' || key == 'L' ) { IS_WIREFRAME = true; IS_TESSELATED = false; } // Show wireframe
-    if( key == 'r' || key == 'R' )  rotateTree(180);//reflectTree(); //reflect tree
+    if( key == 'f' || key == 'F' ) { IS_TESSELATED = true; IS_WIREFRAME = false; } // Fill in the tree
+    if( key == 't' || key == 'T' ) { IS_WIREFRAME = true; IS_TESSELATED = false; } // Show wireframe
+    if( key == 'l' || key == 'L' ) { IS_WIREFRAME = false; IS_TESSELATED = false; } //Show the bare tree
+    if( key == 'r' || key == 'R' )  reflectTree();//reflectTree(); //reflect tree
     if( key == 's' || key == 'S' ) stopAnimation(); //stops animation
     if( key == 'i' || key == 'I' ) resetTree(); // Stop animation and return tree to original position
     glutPostRedisplay(); 

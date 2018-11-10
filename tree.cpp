@@ -3,7 +3,7 @@
 //  Proj2
 //
 //  Created by Eduardo Rubio on 10/11/18.
-//   Runs all the transformations on the tree as well as its redering 
+//   Runs all the transformations on the tree as well as its rendering
 //
 
 #include "tree.h"
@@ -28,12 +28,13 @@ void createTree( ){
 
 /**
  * Draws out the tree from given points in a Point vector 
- */
+*/
 void drawTree( ){
     
     int xPlusOne;
-    for ( int x = 0; x < TREE_POINTS.size(); x++ ){
-        xPlusOne = (x+1)%TREE_POINTS.size();
+    int treeSize = TREE_POINTS.size();
+    for ( int x = 0; x < treeSize; x++ ){
+        xPlusOne = (x+1)%treeSize;
         glBegin(GL_LINES);
         glVertex2d(TREE_POINTS[x].x, TREE_POINTS[x].y);
         glVertex2d(TREE_POINTS[xPlusOne].x, TREE_POINTS[xPlusOne].y);
@@ -47,8 +48,9 @@ void drawTree( ){
 void drawTree( std::vector<Point> v ){
     
     int xPlusOne;
-    for ( int x = 0; x < v.size(); x++ ){
-        xPlusOne = (x+1)%v.size();
+    int vSize = v.size();
+    for ( int x = 0; x < vSize; x++ ){
+        xPlusOne = (x+1)%vSize;
         glBegin(GL_LINES);
         glVertex2d(v[x].x, v[x].y);
         glVertex2d(v[xPlusOne].x, v[xPlusOne].y);
@@ -61,23 +63,13 @@ void drawTree( std::vector<Point> v ){
  */
 void resetTree( ){
     
-    /**glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);*/
     TREE_POINTS.clear();
     TRIANGLES.clear();
-    T_LINES.clear(); 
+    IS_TESSELATED = false;
+    IS_WIREFRAME = false;
     IS_ROTATING = false;
     createTree();
     drawTree(); 
-    
-}
-
-/**
- * Reflects the tree over its midpoint
- */
-void reflectTree( ){
-    
-    for( int x = 0; x < TREE_POINTS.size(); x++ )
-        TREE_POINTS[x].x = (TREE_POINTS[x].x * -1) + 800;
     
 }
 
@@ -96,17 +88,17 @@ Point rotate( Point p, double theta ){
     double cos =  cosf( degreesToRadians(theta));
     double sin =  sinf( degreesToRadians(theta));
     
-    p.x -= 400;
-    p.y -= 400;
+    /* Include the ROT_POINT here for the translations*/
+    p.x -= CENTER_POINT.x;
+    p.y -= CENTER_POINT.y;
     
     double newX = cos*p.x - sin*p.y;
     double newY = sin*p.x + cos*p.y;
     
-    p.x = newX + 400;
-    p.y = newY + 400;
+    p.x = newX + CENTER_POINT.x;
+    p.y = newY + CENTER_POINT.y;
     
     return p;
-    
 }
 
 /**
@@ -142,6 +134,21 @@ void scaleTree( int Direction ){
     
     for( int x = 0; x < TREE_POINTS.size(); x++ )
         TREE_POINTS[ x ] = scale(TREE_POINTS[x], Direction);
+    
+}
+
+/**
+ * Moves tree around the XY-plane
+ */
+void moveTree( int xTranslate, int yTranslate){
+    
+    int treeSize = TREE_POINTS.size();
+    CENTER_POINT.x += xTranslate;
+    CENTER_POINT.y += yTranslate; 
+    for( int i = 0; i < treeSize; i++ ){
+        TREE_POINTS[i].x = TREE_POINTS[i].x + xTranslate;
+        TREE_POINTS[i].y = TREE_POINTS[i].y + yTranslate;
+    }
     
 }
 

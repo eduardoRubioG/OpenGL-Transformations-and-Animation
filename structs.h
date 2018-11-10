@@ -23,9 +23,3 @@ struct Triangle{
 
 };
 
-struct LineSeg{
-  
-    Point first;
-    Point second; 
-    
-};

@@ -20,7 +20,7 @@ int getNumCircleSegments(float r){
  */
 void makeArc(float xPos, float yPos, float r, float start_angle, float arc_angle)
 {
-    //Circle approximations derived from online Physics forum (independent html site). User "SiegeLord"
+    //Circle approximations derived from online Physics forum (independent html site). User "SigeLord"
     //  suggested utilizing centripital acceleration and radial speed vectors of a circle to approximate
     //  points in a counterclockwise fashion
     
@@ -33,7 +33,7 @@ void makeArc(float xPos, float yPos, float r, float start_angle, float arc_angle
     float x = r * cosf(start_angle);//we now start at the start angle
     float y = r * sinf(start_angle);
     
-    for(int ii = 0; ii < num_segments; ii++)
+    for(int iter = 0; iter < num_segments; iter++)
     {
         
         Point newPoint;

@@ -19,9 +19,6 @@ void timer( int ) {
         
         rotateTree( SPIN );
         
-        if( IS_FILLED )
-            triFill();
-        
         glutPostRedisplay();
         glutTimerFunc(1000/60, timer, 0);
         
@@ -29,7 +26,7 @@ void timer( int ) {
 }
 
 /**
- *
+ * Stops animation of the tree
  */
 void stopAnimation( ){
     IS_ROTATING = false;

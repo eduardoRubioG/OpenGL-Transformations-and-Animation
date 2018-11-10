@@ -40,7 +40,17 @@ void mouse( int button, int state, int x, int y ){
             rotationAnimation();
         }
     }
-    
+    glutPostRedisplay();
+}
+
+/**
+ * Keyboard interaction for non-ASCII keys
+ */
+void specialKeyb( int key, int x, int y ){
+    if( key == GLUT_KEY_RIGHT )    moveTree(5, 0);
+    if( key == GLUT_KEY_LEFT)      moveTree(-5, 0);
+    if( key == GLUT_KEY_UP)        moveTree(0, 5);
+    if( key == GLUT_KEY_DOWN)      moveTree(0, -5);
     glutPostRedisplay();
 }
 
@@ -49,20 +59,11 @@ void mouse( int button, int state, int x, int y ){
  */
 void keyboard( unsigned char key, int x, int y ){
     
-    
     if( key == 'q' || key == 'Q' ) exit(0); // Quit
-    if( key == 'f' || key == 'F' ) { } // Fill through tesselation
-    if( key == 't' || key == 'T' ) { triFill(); } // Show triangles
-    if( key == 'l' || key == 'L' ) { } // Show wireframe
-    if( key == 'r' || key == 'R' ) reflectTree(); //reflect tree
+    if( key == 't' || key == 'T' ) { IS_TESSELATED = true; IS_WIREFRAME = false; } // Show triangles
+    if( key == 'l' || key == 'L' ) { IS_WIREFRAME = true; IS_TESSELATED = false; } // Show wireframe
+    if( key == 'r' || key == 'R' )  rotateTree(180);//reflectTree(); //reflect tree
     if( key == 's' || key == 'S' ) stopAnimation(); //stops animation
     if( key == 'i' || key == 'I' ) resetTree(); // Stop animation and return tree to original position
-    if( key == 'f' || key == 'F' ) {
-        IS_FILLED = true; 
-        //triFill();
-    }
-    if( key == 'x' || key == 'X' ) glutSwapBuffers(); //Swap buffer by hand
-
-    
     glutPostRedisplay(); 
 }

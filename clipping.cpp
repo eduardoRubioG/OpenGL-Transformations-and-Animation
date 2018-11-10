@@ -101,7 +101,7 @@ void clip( Point one, Point two, std::vector<Point> &tPoint ){
             Point np = k;
             newPoints.push_back( np );
         }
-        //Case 2: Only first point is on the outside
+        //Case 2: First point is outside
         else if( iValue  >= 0 && kValue < 0 ) {
             //Point of intersection with edge
             //and the second point is added
@@ -111,7 +111,7 @@ void clip( Point one, Point two, std::vector<Point> &tPoint ){
             newPoints.push_back( newP );
             newPoints.push_back( k );
         }
-        //Case 3: When only the second point is on the outside
+        //Case 3: Second point is outside
         else if( iValue < 0 && kValue >= 0 ){
             //Only point of intersection with edge is added
             Point newP;
@@ -119,7 +119,7 @@ void clip( Point one, Point two, std::vector<Point> &tPoint ){
             newP.y = yIntersect(one, two, i, k);
             newPoints.push_back( newP );
         }
-        //Case 4: When both points are outside
+        //Case 4: Both outside
         else { /* No points are added */ }
         
     }
@@ -138,10 +138,8 @@ std::vector<Point>  shClip( ){
     
     std::vector<Point> tPoint = TREE_POINTS;
     for( int pos = 0; pos < 4; pos++ ){
-        
         int nextPos = (pos+1)%4;
         clip( clippers[ pos ], clippers[ nextPos ], tPoint);
-        
     }
     return tPoint; 
 

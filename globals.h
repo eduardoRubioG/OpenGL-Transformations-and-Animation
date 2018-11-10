@@ -35,6 +35,7 @@ std::vector<Triangle> TRIANGLES;  //Stores triangles created from tesselating
 bool IS_ROTATING = false;   //Used to keep track of whether animation should continue or stop
 bool IS_TESSELATED = false; //Keeps track of wether or not the tree should be tesselated
 bool IS_WIREFRAME = false;  //Wether or not the tree should be filled with a wireframe
+bool IS_REFLECTED = false; 
 
 Point CENTER_POINT = {WORLD_COORDINATES_MAX_X/2,WORLD_COORDINATES_MAX_Y/2}; //Defines the rotation point
 

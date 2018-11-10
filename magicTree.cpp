@@ -14,7 +14,6 @@
 #include "initializerFunctions.cpp"
 #include "circles.h"
 #include "tree.h"
-#include "tesselate.cpp"
 #include "animation.cpp"
 #include "MouseKeyb.cpp"
 using namespace std;
@@ -25,6 +24,7 @@ int main(int argc, char * argv[]) {
     myInit();
     createTree();
     glutMouseFunc(mouse);
+    glutSpecialFunc(specialKeyb);
     glutKeyboardFunc(keyboard);
     glutDisplayFunc(display);
     glutMainLoop();

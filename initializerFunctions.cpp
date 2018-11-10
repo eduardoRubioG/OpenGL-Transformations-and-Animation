@@ -12,6 +12,8 @@
 #include <math.h>
 #include "clipping.cpp"
 #include "tree.h"
+#include "tesselate.cpp"
+
 
 void myglutInit( int argc, char** argv ){
     glutInit( &argc, argv );
@@ -31,7 +33,8 @@ void myInit(void){
     glViewport(0, 0, 100, 100);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluOrtho2D(WORLD_COORDINATES_MIN_X, WORLD_COORDINATES_MAX_X, WORLD_COORDINATES_MIN_Y, WORLD_COORDINATES_MAX_Y);
+    gluOrtho2D(WORLD_COORDINATES_MIN_X, WORLD_COORDINATES_MAX_X,
+               WORLD_COORDINATES_MIN_Y, WORLD_COORDINATES_MAX_Y);
     glMatrixMode(GL_MODELVIEW);
 }
 
@@ -43,8 +46,16 @@ void display() {
     glColor3f(1.0, 1.0, 1.0); //
     glRecti(VIEWPORT_MIN, VIEWPORT_MIN, VIEWPORT_MAX, VIEWPORT_MAX);
     
+    /* Clip the tree */
+    POST_CLIP_TREE.clear();
+    POST_CLIP_TREE = shClip();
+    
     /* Draw the tree */ 
     glColor3f(1.0, 0.0, 1.0);
-    drawTree( shClip() ); //Clips before rendering 
+    drawTree( POST_CLIP_TREE );
+    
+    /*Tesselated if needed*/
+    toTesselate();
+    
     glutSwapBuffers();
 }

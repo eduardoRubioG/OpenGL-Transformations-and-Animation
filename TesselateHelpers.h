@@ -3,7 +3,6 @@
 //  Proj2
 //
 //  Created by Eduardo Rubio on 10/12/18.
-//  Copyright © 2018 Eduardo Rubio. All rights reserved.
 //
 
 #ifndef TesselateHelpers_hpp

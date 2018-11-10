@@ -113,6 +113,21 @@ void rotateTree( double theta ) {
 }
 
 /**
+ *Reflect the tree
+ */
+void reflectTree( ){
+     for( int i = 0; i < TREE_POINTS.size(); i++ ){
+         TREE_POINTS[i].x *= -1;
+         TREE_POINTS[i].x += CENTER_POINT.x * 2;
+     }
+    
+    if( IS_REFLECTED )
+        IS_REFLECTED = false;
+    else
+        IS_REFLECTED = true; 
+ }
+
+/**
  * Scales an individual point. Int value will indicate an increase/decrease (positive int increases, negative decreases)
  */
 Point scale( Point p, int Direction){

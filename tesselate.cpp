@@ -67,8 +67,12 @@ void newTriangle( int indexP, int indexQ, int indexR, std::vector<Point> const v
 void tesselate(  ) {
     
     //Will be used for to maintain which points have not been clipped
-    std::vector<Point> untouchedPoints = POST_CLIP_TREE;
-    
+    std::vector<Point> untouchedPoints;
+    if( IS_REFLECTED )
+        untouchedPoints = flipPoints(POST_CLIP_TREE);
+    else
+        untouchedPoints = POST_CLIP_TREE;
+        
     for( int x = 0; x < untouchedPoints.size(); x++ ){
         
         //printPolPointVectors(untouchedPoints);

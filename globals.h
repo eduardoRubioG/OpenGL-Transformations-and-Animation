@@ -28,13 +28,14 @@ const float VIEWPORT_MAX = 700;
 
 int SPIN = 0; 
 
-std::vector<Point> TREE_POINTS; //Stores tree points
-std::vector<Triangle> TRIANGLES;
-std::vector<LineSeg> T_LINES; 
-/**
- * Safety for the animations to continue/stop 
- */
-bool IS_ROTATING = false;
-bool IS_FILLED = false; 
+std::vector<Point> TREE_POINTS;   //Stores original tree points
+std::vector<Point> POST_CLIP_TREE;//Stores clipped tree
+std::vector<Triangle> TRIANGLES;  //Stores triangles created from tesselating
+
+bool IS_ROTATING = false;   //Used to keep track of whether animation should continue or stop
+bool IS_TESSELATED = false; //Keeps track of wether or not the tree should be tesselated
+bool IS_WIREFRAME = false;  //Wether or not the tree should be filled with a wireframe
+
+Point CENTER_POINT = {WORLD_COORDINATES_MAX_X/2,WORLD_COORDINATES_MAX_Y/2}; //Defines the rotation point
 
 

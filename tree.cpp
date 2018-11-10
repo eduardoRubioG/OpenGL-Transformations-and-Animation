@@ -68,6 +68,7 @@ void resetTree( ){
     IS_TESSELATED = false;
     IS_WIREFRAME = false;
     IS_ROTATING = false;
+    SPIN = 0; 
     createTree();
     drawTree(); 
     
